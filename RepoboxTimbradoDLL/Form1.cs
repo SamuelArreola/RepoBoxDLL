@@ -232,7 +232,7 @@ namespace RepoboxTimbradoDLL
             //concepto.Impuestos.Traslados.Add(new RepoBox33.CI_Traslado() { Base = concepto.Importe, Impuesto = "002", TasaOCuota = (decimal)0.160000, TipoFactor = "Tasa", Importe = Convert.ToDecimal((concepto.Importe * (decimal)0.160000).ToString("N2")) });
             concepto.Impuestos.Traslados.Add(new RepoBox33.CI_Traslado() { Base = concepto.Importe, Impuesto = "002", TipoFactor = "Exento", ImporteSpecified = false, TasaOCuotaSpecified = false });
             //concepto.Impuestos.Retenciones = new List<CI_Retencion>();
-            concepto.Impuestos.Retenciones.Add(new RepoBox33.CI_Retencion() { Base = concepto.Importe, Impuesto = "002", TasaOCuota = (decimal)0.106666, TipoFactor = "Tasa", Importe = (decimal)10666.67 });//Convert.ToDecimal((concepto.Importe * (decimal)0.10666667).ToString("N2"))
+            //concepto.Impuestos.Retenciones.Add(new RepoBox33.CI_Retencion() { Base = concepto.Importe, Impuesto = "002", TasaOCuota = (decimal)0.106666, TipoFactor = "Tasa", Importe = (decimal)10666.67 });//Convert.ToDecimal((concepto.Importe * (decimal)0.10666667).ToString("N2"))
             //concepto.Impuestos.Retenciones.Add(new RepoBox33.CI_Retencion() { Base = concepto.Importe, Impuesto = "001", TasaOCuota = (decimal)0.1000000, TipoFactor = "Tasa", Importe = Convert.ToDecimal((concepto.Importe * (decimal)0.100000).ToString("N2")) });
             factura.Conceptos.Add(concepto);
 
