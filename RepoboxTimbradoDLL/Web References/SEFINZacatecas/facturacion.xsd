@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://webservices.finanzas.zacatecas.com/" targetNamespace="http://webservices.finanzas.zacatecas.com/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="ObtenerFacturaGlobalEgresos" type="tns:ObtenerFacturaGlobalEgresos" />
+  <xs:element name="ObtenerFacturaGlobalEgresosResponse" type="tns:ObtenerFacturaGlobalEgresosResponse" />
+  <xs:element name="ObtenerFacturaGlobalIngresos" type="tns:ObtenerFacturaGlobalIngresos" />
+  <xs:element name="ObtenerFacturaGlobalIngresosResponse" type="tns:ObtenerFacturaGlobalIngresosResponse" />
+  <xs:element name="cancela_factura" type="tns:cancela_factura" />
+  <xs:element name="cancela_facturaResponse" type="tns:cancela_facturaResponse" />
+  <xs:element name="factura_actualiza_domicilio" type="tns:factura_actualiza_domicilio" />
+  <xs:element name="factura_actualiza_domicilioResponse" type="tns:factura_actualiza_domicilioResponse" />
+  <xs:element name="factura_recibo" type="tns:factura_recibo" />
+  <xs:element name="factura_reciboResponse" type="tns:factura_reciboResponse" />
+  <xs:element name="factura_siguiente" type="tns:factura_siguiente" />
+  <xs:element name="factura_siguienteResponse" type="tns:factura_siguienteResponse" />
+  <xs:element name="guarda_factura" type="tns:guarda_factura" />
+  <xs:element name="guarda_facturaResponse" type="tns:guarda_facturaResponse" />
+  <xs:complexType name="ObtenerFacturaGlobalIngresos">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="FechaIni" type="xs:string" />
+      <xs:element minOccurs="0" name="FechaFin" type="xs:string" />
+      <xs:element minOccurs="0" name="rfc_dep" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ObtenerFacturaGlobalIngresosResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="factura_siguiente">
+    <xs:sequence />
+  </xs:complexType>
+  <xs:complexType name="factura_siguienteResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:tSiguienteFactura" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="tSiguienteFactura">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="folio" type="xs:int" />
+      <xs:element minOccurs="0" name="tipo" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="guarda_factura">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="clave" type="xs:int" />
+      <xs:element minOccurs="0" name="no_factura" type="xs:int" />
+      <xs:element minOccurs="0" name="tipo" type="xs:string" />
+      <xs:element minOccurs="0" name="rfc_dep" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="guarda_facturaResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:estatus" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="estatus">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="error" type="xs:string" />
+      <xs:element minOccurs="0" name="estatus" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="factura_actualiza_domicilio">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="rfc" type="xs:string" />
+      <xs:element minOccurs="0" name="calle" type="xs:string" />
+      <xs:element minOccurs="0" name="numeroext" type="xs:string" />
+      <xs:element minOccurs="0" name="numeroint" type="xs:string" />
+      <xs:element minOccurs="0" name="colonia" type="xs:string" />
+      <xs:element minOccurs="0" name="municipiodeleg" type="xs:string" />
+      <xs:element minOccurs="0" name="ciudad" type="xs:string" />
+      <xs:element minOccurs="0" name="estado" type="xs:string" />
+      <xs:element minOccurs="0" name="pais" type="xs:string" />
+      <xs:element minOccurs="0" name="correo" type="xs:string" />
+      <xs:element minOccurs="0" name="clave" type="xs:int" />
+      <xs:element minOccurs="0" name="rfc_dep" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="factura_actualiza_domicilioResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:estatus" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="factura_recibo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="folio" type="xs:int" />
+      <xs:element minOccurs="0" name="tipo" type="xs:string" />
+      <xs:element minOccurs="0" name="Fecha" type="xs:string" />
+      <xs:element minOccurs="0" name="rfc_dep" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="factura_reciboResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="cancela_factura">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="foliofactura" type="xs:string" />
+      <xs:element minOccurs="0" name="seriefactura" type="xs:string" />
+      <xs:element minOccurs="0" name="motivo" type="xs:string" />
+      <xs:element minOccurs="0" name="rfc_dep" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="cancela_facturaResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:estatus" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ObtenerFacturaGlobalEgresos">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="FechaIni" type="xs:string" />
+      <xs:element minOccurs="0" name="FechaFin" type="xs:string" />
+      <xs:element minOccurs="0" name="rfc_dep" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ObtenerFacturaGlobalEgresosResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

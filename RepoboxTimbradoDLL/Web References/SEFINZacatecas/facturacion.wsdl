@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definitions xmlns:wsp="http://www.w3.org/ns/ws-policy" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:tns="http://webservices.finanzas.zacatecas.com/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsp1_2="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" name="facturacion" targetNamespace="http://webservices.finanzas.zacatecas.com/" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <types>
+    <xsd:schema>
+      <xsd:import schemaLocation="http://sip.zacatecas.gob.mx:8080/ws_facturacion/facturacion?xsd=1" namespace="http://webservices.finanzas.zacatecas.com/" />
+    </xsd:schema>
+  </types>
+  <message name="ObtenerFacturaGlobalIngresos">
+    <part name="parameters" element="tns:ObtenerFacturaGlobalIngresos" />
+  </message>
+  <message name="ObtenerFacturaGlobalIngresosResponse">
+    <part name="parameters" element="tns:ObtenerFacturaGlobalIngresosResponse" />
+  </message>
+  <message name="guarda_factura">
+    <part name="parameters" element="tns:guarda_factura" />
+  </message>
+  <message name="guarda_facturaResponse">
+    <part name="parameters" element="tns:guarda_facturaResponse" />
+  </message>
+  <message name="ObtenerFacturaGlobalEgresos">
+    <part name="parameters" element="tns:ObtenerFacturaGlobalEgresos" />
+  </message>
+  <message name="ObtenerFacturaGlobalEgresosResponse">
+    <part name="parameters" element="tns:ObtenerFacturaGlobalEgresosResponse" />
+  </message>
+  <message name="factura_siguiente">
+    <part name="parameters" element="tns:factura_siguiente" />
+  </message>
+  <message name="factura_siguienteResponse">
+    <part name="parameters" element="tns:factura_siguienteResponse" />
+  </message>
+  <message name="factura_recibo">
+    <part name="parameters" element="tns:factura_recibo" />
+  </message>
+  <message name="factura_reciboResponse">
+    <part name="parameters" element="tns:factura_reciboResponse" />
+  </message>
+  <message name="cancela_factura">
+    <part name="parameters" element="tns:cancela_factura" />
+  </message>
+  <message name="cancela_facturaResponse">
+    <part name="parameters" element="tns:cancela_facturaResponse" />
+  </message>
+  <message name="factura_actualiza_domicilio">
+    <part name="parameters" element="tns:factura_actualiza_domicilio" />
+  </message>
+  <message name="factura_actualiza_domicilioResponse">
+    <part name="parameters" element="tns:factura_actualiza_domicilioResponse" />
+  </message>
+  <portType name="facturacion">
+    <operation name="ObtenerFacturaGlobalIngresos">
+      <input wsam:Action="http://webservices.finanzas.zacatecas.com/facturacion/ObtenerFacturaGlobalIngresosRequest" message="tns:ObtenerFacturaGlobalIngresos" />
+      <output wsam:Action="http://webservices.finanzas.zacatecas.com/facturacion/ObtenerFacturaGlobalIngresosResponse" message="tns:ObtenerFacturaGlobalIngresosResponse" />
+    </operation>
+    <operation name="guarda_factura">
+      <input wsam:Action="http://webservices.finanzas.zacatecas.com/facturacion/guarda_facturaRequest" message="tns:guarda_factura" />
+      <output wsam:Action="http://webservices.finanzas.zacatecas.com/facturacion/guarda_facturaResponse" message="tns:guarda_facturaResponse" />
+    </operation>
+    <operation name="ObtenerFacturaGlobalEgresos">
+      <input wsam:Action="http://webservices.finanzas.zacatecas.com/facturacion/ObtenerFacturaGlobalEgresosRequest" message="tns:ObtenerFacturaGlobalEgresos" />
+      <output wsam:Action="http://webservices.finanzas.zacatecas.com/facturacion/ObtenerFacturaGlobalEgresosResponse" message="tns:ObtenerFacturaGlobalEgresosResponse" />
+    </operation>
+    <operation name="factura_siguiente">
+      <input wsam:Action="http://webservices.finanzas.zacatecas.com/facturacion/factura_siguienteRequest" message="tns:factura_siguiente" />
+      <output wsam:Action="http://webservices.finanzas.zacatecas.com/facturacion/factura_siguienteResponse" message="tns:factura_siguienteResponse" />
+    </operation>
+    <operation name="factura_recibo">
+      <input wsam:Action="http://webservices.finanzas.zacatecas.com/facturacion/factura_reciboRequest" message="tns:factura_recibo" />
+      <output wsam:Action="http://webservices.finanzas.zacatecas.com/facturacion/factura_reciboResponse" message="tns:factura_reciboResponse" />
+    </operation>
+    <operation name="cancela_factura">
+      <input wsam:Action="http://webservices.finanzas.zacatecas.com/facturacion/cancela_facturaRequest" message="tns:cancela_factura" />
+      <output wsam:Action="http://webservices.finanzas.zacatecas.com/facturacion/cancela_facturaResponse" message="tns:cancela_facturaResponse" />
+    </operation>
+    <operation name="factura_actualiza_domicilio">
+      <input wsam:Action="http://webservices.finanzas.zacatecas.com/facturacion/factura_actualiza_domicilioRequest" message="tns:factura_actualiza_domicilio" />
+      <output wsam:Action="http://webservices.finanzas.zacatecas.com/facturacion/factura_actualiza_domicilioResponse" message="tns:factura_actualiza_domicilioResponse" />
+    </operation>
+  </portType>
+  <binding name="facturacionPortBinding" type="tns:facturacion">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <operation name="ObtenerFacturaGlobalIngresos">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="guarda_factura">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="ObtenerFacturaGlobalEgresos">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="factura_siguiente">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="factura_recibo">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="cancela_factura">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="factura_actualiza_domicilio">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+  </binding>
+  <service name="facturacion">
+    <port name="facturacionPort" binding="tns:facturacionPortBinding">
+      <soap:address location="http://sip.zacatecas.gob.mx:8080/ws_facturacion/facturacion" />
+    </port>
+  </service>
+</definitions>

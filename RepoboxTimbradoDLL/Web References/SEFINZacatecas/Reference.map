@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DiscoveryClientResultsFile xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Results>
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.ContractReference" url="http://sip.zacatecas.gob.mx:8080/ws_facturacion/facturacion?wsdl" filename="facturacion.wsdl" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="http://sip.zacatecas.gob.mx:8080/ws_facturacion/facturacion?xsd=1" filename="facturacion.xsd" />
+  </Results>
+</DiscoveryClientResultsFile>

@@ -1,0 +1,9 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="RepoboxTimbradoDLL.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="RepoboxTimbradoDLL_SEFINZacatecas_facturacion" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://sip.zacatecas.gob.mx:8080/ws_facturacion/facturacion</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

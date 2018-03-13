@@ -1,0 +1,280 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{E835CB9E-8D26-4085-8114-DF916239BC49}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>RepoBox</RootNamespace>
+    <AssemblyName>RepoBox</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="BouncyCastle.Crypto">
+      <HintPath>C:\Repobox\Timbrado\Base\BouncyCastle.Crypto.dll</HintPath>
+    </Reference>
+    <Reference Include="RepoBox_Engine">
+      <HintPath>C:\Repobox\Timbrado\Base\RepoBox_Engine.dll</HintPath>
+    </Reference>
+    <Reference Include="RepoBox_Shared">
+      <HintPath>C:\Repobox\Timbrado\Base\RepoBox_Shared.dll</HintPath>
+    </Reference>
+    <Reference Include="SSiteEncrypt">
+      <HintPath>C:\RepoBox\Timbrado\Base\SSiteEncrypt.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="ThoughtWorks.QRCode">
+      <HintPath>C:\Repobox\Timbrado\Base\ThoughtWorks.QRCode.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CFDIv32.cs" />
+    <Compile Include="cfdv32.cs" />
+    <Compile Include="cfdv33.cs" />
+    <Compile Include="ComercioExterior11.cs" />
+    <Compile Include="donat11.cs" />
+    <Compile Include="Pagos10.cs" />
+    <Compile Include="PilgrimsADDENDA.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="RepoboxOpenSSL.cs" />
+    <Compile Include="SAT\ClavePyS.cs" />
+    <Compile Include="SAT\ClaveUnidad.cs" />
+    <Compile Include="SAT\Clave_Descripcion.cs" />
+    <Compile Include="SAT\Conexion.cs" />
+    <Compile Include="SAT\FormaPago.cs" />
+    <Compile Include="SAT\Funciones.cs" />
+    <Compile Include="SAT\Impuesto.cs" />
+    <Compile Include="SAT\MetodoPago.cs" />
+    <Compile Include="SAT\Moneda.cs" />
+    <Compile Include="SAT\RegimenFiscal.cs" />
+    <Compile Include="SAT\SATCats.cs" />
+    <Compile Include="SAT\TasaOCuota.cs" />
+    <Compile Include="SAT\TipoComprobante.cs" />
+    <Compile Include="SAT\TipoFactor.cs" />
+    <Compile Include="SAT\UnidadAduana.cs" />
+    <Compile Include="SAT\UsoCFDI.cs" />
+    <Compile Include="Web References\RepoBoxWS33\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+    <Compile Include="Web References\RepoBoxWS\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+    <Compile Include="Web References\RepoWS\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+    <Compile Include="Web References\RepoWS_Cancel\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+    <Compile Include="Web References\RepoWS_Demo\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferences Include="Web References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferenceUrl Include="http://timbrado.pade.mx/servicio/Timbrado3.3%3fwsdl">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\RepoBoxWS33\</RelPath>
+      <UpdateFromURL>http://timbrado.pade.mx/servicio/Timbrado3.3%3fwsdl</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>RepoBox_RepoBoxWS33_Timbrado3_3</CachedSettingsPropName>
+    </WebReferenceUrl>
+    <WebReferenceUrl Include="https://demo-facturacion.cepdi.mx/servicios/soap/stamp.wsdl">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\RepoWS_Demo\</RelPath>
+      <UpdateFromURL>https://demo-facturacion.cepdi.mx/servicios/soap/stamp.wsdl</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>RepoBox_RepoWS_Demo_StampSOAP</CachedSettingsPropName>
+    </WebReferenceUrl>
+    <WebReferenceUrl Include="https://facturacion.cepdi.mx/servicios/soap/cancel.wsdl">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\RepoWS_Cancel\</RelPath>
+      <UpdateFromURL>https://facturacion.cepdi.mx/servicios/soap/cancel.wsdl</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>RepoBox_RepoWS_Cancel_CancelSOAP</CachedSettingsPropName>
+    </WebReferenceUrl>
+    <WebReferenceUrl Include="https://facturacion.cepdi.mx/servicios/soap/stamp.wsdl">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\RepoWS\</RelPath>
+      <UpdateFromURL>https://facturacion.cepdi.mx/servicios/soap/stamp.wsdl</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>RepoBox_RepoWS_StampSOAP</CachedSettingsPropName>
+    </WebReferenceUrl>
+    <WebReferenceUrl Include="https://www.pade.mx/PadeApp/TimbradoService%3fWSDL">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\RepoBoxWS\</RelPath>
+      <UpdateFromURL>https://www.pade.mx/PadeApp/TimbradoService%3fWSDL</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>Repobox_PRODIGIA_TimbradoService</CachedSettingsPropName>
+    </WebReferenceUrl>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Web References\RepoBoxWS33\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\RepoBoxWS33\Timbrado3.wsdl" />
+    <None Include="Web References\RepoBoxWS33\Timbrado3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Web References\RepoBoxWS\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\RepoBoxWS\TimbradoService.wsdl" />
+    <None Include="Web References\RepoBoxWS\TimbradoService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Web References\RepoWS\Application.wsdl" />
+    <None Include="Web References\RepoWS\quick_stampResponse.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\RepoWS\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\RepoWS\stampedResponse.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\RepoWS\stampResponse.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\RepoWS\stampStrResponse.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\RepoWS_Cancel\Application.wsdl" />
+    <None Include="Web References\RepoWS_Cancel\cancel64Response.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\RepoWS_Cancel\cancelResponse.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\RepoWS_Cancel\cancel_signatureResponse.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\RepoWS_Cancel\get_receiptResponse.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\RepoWS_Cancel\out_cancelResponse.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\RepoWS_Cancel\query_pending_cancellationResponse.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\RepoWS_Cancel\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\RepoWS_Demo\Application.wsdl" />
+    <None Include="Web References\RepoWS_Demo\ObtenerPDFResponse.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\RepoWS_Demo\quick_stampResponse.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\RepoWS_Demo\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\RepoWS_Demo\stampedResponse.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\RepoWS_Demo\stampEKResponse.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\RepoWS_Demo\stampResponse.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\RepoWS_Demo\stampStrResponse.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\RepoWS_Demo\testTestResponse.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

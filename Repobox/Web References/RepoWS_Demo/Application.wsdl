@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap11enc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:soap12enc="http://www.w3.org/2003/05/soap-encoding" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="https://timbrador.cepdi.mx:8443/WSDemo/WS?WSDL" xmlns:s0="soap.complex_model" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap11env="http://schemas.xmlsoap.org/soap/envelope/" xmlns:soap12env="http://www.w3.org/2003/05/soap-envelope" xmlns:wsa="http://schemas.xmlsoap.org/ws/2003/03/addressing" xmlns:plink="http://schemas.xmlsoap.org/ws/2003/05/partner-link/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xop="http://www.w3.org/2004/08/xop/include" name="Application" targetNamespace="https://timbrador.cepdi.mx:8443/WSDemo/WS?WSDL" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xs:schema elementFormDefault="qualified" targetNamespace="soap.complex_model">
+      <xs:complexType name="Incidencia">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="IdIncidencia" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Uuid" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="CodigoError" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="WorkProcessId" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="MensajeIncidencia" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="RfcEmisor" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="NoCertificadoPac" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="FechaRegistro" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="IncidenciaArray">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="Incidencia" nillable="true" type="s0:Incidencia" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="AcuseRecepcionCFDI_EK">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="xml" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="NoCertificadoSAT" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="UUID" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="CfdSeal" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Fecha" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Exitoso" nillable="true" type="xs:boolean" />
+          <xs:element minOccurs="0" name="CodEstatus" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="faultcode" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="SatSeal" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Incidencias" nillable="true" type="s0:IncidenciaArray" />
+          <xs:element minOccurs="0" name="faultstring" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="AcuseRecepcionCFDI">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="xml" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="UUID" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="NoCertificadoSAT" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Fecha" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="CodEstatus" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="faultcode" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="SatSeal" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Incidencias" nillable="true" type="s0:IncidenciaArray" />
+          <xs:element minOccurs="0" name="faultstring" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="Incidencia" type="s0:Incidencia" />
+      <xs:element name="IncidenciaArray" type="s0:IncidenciaArray" />
+      <xs:element name="AcuseRecepcionCFDI_EK" type="s0:AcuseRecepcionCFDI_EK" />
+      <xs:element name="AcuseRecepcionCFDI" type="s0:AcuseRecepcionCFDI" />
+    </xs:schema>
+    <xs:schema elementFormDefault="qualified" targetNamespace="https://timbrador.cepdi.mx:8443/WSDemo/WS?WSDL">
+      <xs:import namespace="soap.complex_model" />
+      <xs:complexType name="ObtenerPDF">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="username" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="password" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="uuid" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ObtenerPDFResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="ObtenerPDFResult" nillable="true" type="xs:base64Binary" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="quick_stamp">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="username" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="password" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="xml" nillable="true" type="xs:base64Binary" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="stamp">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="username" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="password" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="xml" nillable="true" type="xs:base64Binary" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="stampEK">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="username" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="password" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="xml" nillable="true" type="xs:base64Binary" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="stampStr">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="username" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="password" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="xml" nillable="true" type="xs:base64Binary" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="stampStrResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="stampStrResult" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="stamped">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="username" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="password" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="xml" nillable="true" type="xs:base64Binary" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="testTest">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="username" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="password" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="xml" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="testTestResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="testTestResult" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="stampEKResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="stampEKResult" nillable="true" type="s0:AcuseRecepcionCFDI_EK" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="quick_stampResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="quick_stampResult" nillable="true" type="s0:AcuseRecepcionCFDI" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="stampResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="stampResult" nillable="true" type="s0:AcuseRecepcionCFDI" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="stampedResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="stampedResult" nillable="true" type="s0:AcuseRecepcionCFDI" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ObtenerPDF" type="tns:ObtenerPDF" />
+      <xs:element name="ObtenerPDFResponse" type="tns:ObtenerPDFResponse" />
+      <xs:element name="quick_stamp" type="tns:quick_stamp" />
+      <xs:element name="stamp" type="tns:stamp" />
+      <xs:element name="stampEK" type="tns:stampEK" />
+      <xs:element name="stampStr" type="tns:stampStr" />
+      <xs:element name="stampStrResponse" type="tns:stampStrResponse" />
+      <xs:element name="stamped" type="tns:stamped" />
+      <xs:element name="testTest" type="tns:testTest" />
+      <xs:element name="testTestResponse" type="tns:testTestResponse" />
+      <xs:element name="stampEKResponse" type="tns:stampEKResponse" />
+      <xs:element name="quick_stampResponse" type="tns:quick_stampResponse" />
+      <xs:element name="stampResponse" type="tns:stampResponse" />
+      <xs:element name="stampedResponse" type="tns:stampedResponse" />
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="stampStr">
+    <wsdl:part name="stampStr" element="tns:stampStr" />
+  </wsdl:message>
+  <wsdl:message name="stampStrResponse">
+    <wsdl:part name="stampStrResponse" element="tns:stampStrResponse" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerPDF">
+    <wsdl:part name="ObtenerPDF" element="tns:ObtenerPDF" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerPDFResponse">
+    <wsdl:part name="ObtenerPDFResponse" element="tns:ObtenerPDFResponse" />
+  </wsdl:message>
+  <wsdl:message name="stamped">
+    <wsdl:part name="stamped" element="tns:stamped" />
+  </wsdl:message>
+  <wsdl:message name="stampedResponse">
+    <wsdl:part name="stampedResponse" element="tns:stampedResponse" />
+  </wsdl:message>
+  <wsdl:message name="stamp">
+    <wsdl:part name="stamp" element="tns:stamp" />
+  </wsdl:message>
+  <wsdl:message name="stampResponse">
+    <wsdl:part name="stampResponse" element="tns:stampResponse" />
+  </wsdl:message>
+  <wsdl:message name="stampEK">
+    <wsdl:part name="stampEK" element="tns:stampEK" />
+  </wsdl:message>
+  <wsdl:message name="stampEKResponse">
+    <wsdl:part name="stampEKResponse" element="tns:stampEKResponse" />
+  </wsdl:message>
+  <wsdl:message name="testTest">
+    <wsdl:part name="testTest" element="tns:testTest" />
+  </wsdl:message>
+  <wsdl:message name="testTestResponse">
+    <wsdl:part name="testTestResponse" element="tns:testTestResponse" />
+  </wsdl:message>
+  <wsdl:message name="quick_stamp">
+    <wsdl:part name="quick_stamp" element="tns:quick_stamp" />
+  </wsdl:message>
+  <wsdl:message name="quick_stampResponse">
+    <wsdl:part name="quick_stampResponse" element="tns:quick_stampResponse" />
+  </wsdl:message>
+  <wsdl:portType name="Application">
+    <wsdl:operation name="stampStr" parameterOrder="stampStr">
+      <wsdl:input name="stampStr" message="tns:stampStr" />
+      <wsdl:output name="stampStrResponse" message="tns:stampStrResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerPDF" parameterOrder="ObtenerPDF">
+      <wsdl:input name="ObtenerPDF" message="tns:ObtenerPDF" />
+      <wsdl:output name="ObtenerPDFResponse" message="tns:ObtenerPDFResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="stamped" parameterOrder="stamped">
+      <wsdl:input name="stamped" message="tns:stamped" />
+      <wsdl:output name="stampedResponse" message="tns:stampedResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="stamp" parameterOrder="stamp">
+      <wsdl:input name="stamp" message="tns:stamp" />
+      <wsdl:output name="stampResponse" message="tns:stampResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="stampEK" parameterOrder="stampEK">
+      <wsdl:input name="stampEK" message="tns:stampEK" />
+      <wsdl:output name="stampEKResponse" message="tns:stampEKResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="testTest" parameterOrder="testTest">
+      <wsdl:input name="testTest" message="tns:testTest" />
+      <wsdl:output name="testTestResponse" message="tns:testTestResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="quick_stamp" parameterOrder="quick_stamp">
+      <wsdl:input name="quick_stamp" message="tns:quick_stamp" />
+      <wsdl:output name="quick_stampResponse" message="tns:quick_stampResponse" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="Application" type="tns:Application">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="stampStr">
+      <soap:operation soapAction="stampStr" style="document" />
+      <wsdl:input name="stampStr">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="stampStrResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerPDF">
+      <soap:operation soapAction="ObtenerPDF" style="document" />
+      <wsdl:input name="ObtenerPDF">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="ObtenerPDFResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="stamped">
+      <soap:operation soapAction="stamped" style="document" />
+      <wsdl:input name="stamped">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="stampedResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="stamp">
+      <soap:operation soapAction="stamp" style="document" />
+      <wsdl:input name="stamp">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="stampResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="stampEK">
+      <soap:operation soapAction="stampEK" style="document" />
+      <wsdl:input name="stampEK">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="stampEKResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="testTest">
+      <soap:operation soapAction="testTest" style="document" />
+      <wsdl:input name="testTest">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="testTestResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="quick_stamp">
+      <soap:operation soapAction="quick_stamp" style="document" />
+      <wsdl:input name="quick_stamp">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="quick_stampResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="StampSOAP">
+    <wsdl:port name="Application" binding="tns:Application">
+      <soap:address location="https://demo-facturacion.cepdi.mx/servicios/soap/stamp" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
