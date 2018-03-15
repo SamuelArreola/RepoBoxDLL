@@ -65,7 +65,10 @@ namespace RepoBox.SAT
                 residuo = (max.ToString().Split('.').Length > 1 ? max.ToString().Split('.')[1] : "");
                 residuo = residuo.PadRight(decimales, '0');
                 residuo = residuo.Substring(0, decimales);
-                residuo = (int.Parse(residuo) + 1).ToString().PadRight(decimales, '0');
+                if (int.Parse(residuo) + 1 > 9)
+                    residuo = (int.Parse(residuo) + 1).ToString().PadRight(decimales, '0');
+                else
+                    residuo = (int.Parse(residuo) + 1).ToString().PadLeft(decimales, '0');
                 if (Convert.ToInt32(residuo) >= 100)
                 {
                     ent = (Convert.ToInt32(ent) + 1).ToString();

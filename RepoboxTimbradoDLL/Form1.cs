@@ -158,7 +158,7 @@ namespace RepoboxTimbradoDLL
         {
             bool acuseBase64 = false;
             RepoBox.CFDIv32 cfdi = new RepoBox.CFDIv32();
-            string xml = cfdi.Cancelar32(false, "CEA990831FI8", "240BD88D-A695-4189-891C-A4886ED9E24F", @"C:\Repobox\Timbrado\CEA990831FI8\00001000000403161018.cer", @"C:\Repobox\Timbrado\CEA990831FI8\CSD_Cananea_CEA990831FI8_20160719_124927.key", "cananea2016", acuseBase64);
+            string xml = cfdi.Cancelar32(false, "CEA990831FI8", "84473408-E750-463C-9493-372B000CC709", @"C:\Repobox\Timbrado\CEA990831FI8\00001000000403161018.cer", @"C:\Repobox\Timbrado\CEA990831FI8\CSD_Cananea_CEA990831FI8_20160719_124927.key", "cananea2016", acuseBase64);
             if (!xml.StartsWith("RepoBox:"))
                 if (acuseBase64)
                     xml = System.Text.ASCIIEncoding.ASCII.GetString(Convert.FromBase64String(xml));
@@ -1042,7 +1042,7 @@ namespace RepoboxTimbradoDLL
         private void btnProbarRangoImpuestos_Click(object sender, EventArgs e)
         {
             RepoBox.SAT.Funciones funciones = new RepoBox.SAT.Funciones();
-            bool resultado = funciones.Impuestos((decimal)100000, (decimal)0.106666, (decimal)10666.67);
+            bool resultado = funciones.Impuestos((decimal)469.23, (decimal)0.160000, (decimal)75.07);
 
             //bool resultado = funciones.Impuestos((decimal)3049.84, (decimal)0.04, (decimal)121.99);
             //bool resultado2 = funciones.Importes((decimal)2, (decimal)128.358122, (decimal)256.72);
