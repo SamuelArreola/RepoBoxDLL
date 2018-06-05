@@ -175,7 +175,16 @@ namespace RepoBox
                     set.ReadXml(stream);
                 }
                 if (set.Tables[0].Rows[0]["timbradoOk"].ToString() == "0" || set.Tables[0].Rows[0]["timbradoOk"].ToString().ToUpper() == "FALSE")
-                    return "RepoBox: " + ErrorMSG(set.Tables[0].Rows[0]["codigo"].ToString() + " - " + set.Tables[0].Rows[0]["mensaje"].ToString());
+                {
+                    try
+                    {
+                        return "RepoBox: " + ErrorMSG(set.Tables[0].Rows[0]["codigo"].ToString() + " - " + set.Tables[0].Rows[0]["mensaje"].ToString());
+                    }
+                    catch (Exception)
+                    {
+                        return "RepoBox: " + ErrorMSG(set.Tables[0].Rows[0]["codigo"].ToString() + ".");
+                    }
+                }
                 else
                     return Encoding.UTF8.GetString(Convert.FromBase64String(set.Tables[0].Rows[0]["xmlBase64"].ToString()));
             }

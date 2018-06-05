@@ -158,10 +158,18 @@ namespace RepoboxTimbradoDLL
         {
             bool acuseBase64 = false;
             RepoBox.CFDIv32 cfdi = new RepoBox.CFDIv32();
-            string xml = cfdi.Cancelar32(false, "CEA990831FI8", "84473408-E750-463C-9493-372B000CC709", @"C:\Repobox\Timbrado\CEA990831FI8\00001000000403161018.cer", @"C:\Repobox\Timbrado\CEA990831FI8\CSD_Cananea_CEA990831FI8_20160719_124927.key", "cananea2016", acuseBase64);
+            string UUID = "E8A4A699-1D46-4700-A0EF-A07578306764";
+            //string xml = cfdi.Cancelar32(false, "CEA990831FI8", "84473408-E750-463C-9493-372B000CC709", @"C:\Repobox\Timbrado\CEA990831FI8\00001000000403161018.cer", @"C:\Repobox\Timbrado\CEA990831FI8\CSD_Cananea_CEA990831FI8_20160719_124927.key", "cananea2016", acuseBase64);
+            //string xml = cfdi.Cancelar32(true, "SFI950101DU2", UUID, @"C:\RepoBox\Timbrado\SFI950101DU2\00001000000302316116.cer", @"C:\RepoBox\Timbrado\SFI950101DU2\CSD_matriz_SFI950101DU2_20140109_115049.key", "cristobal2012", acuseBase64);
+            string xml = cfdi.Cancelar32(true, "SFI950101DU2", UUID, @"C:\RepoBox\Timbrado\SFI950101DU2\00001000000408924535.cer", @"C:\RepoBox\Timbrado\SFI950101DU2\CSD_SECRETARIA_DE_FINANZAS_SFI950101DU2_20180111_130703.key", "Sad2018LO", acuseBase64);
             if (!xml.StartsWith("RepoBox:"))
+            {
                 if (acuseBase64)
                     xml = System.Text.ASCIIEncoding.ASCII.GetString(Convert.FromBase64String(xml));
+                XmlDocument doc = new XmlDocument();
+                doc.LoadXml(xml);
+                doc.Save(@"C:\RepoBox\Timbrado\SFI950101DU2\CFDI\AcuseCancelacion_" + UUID + ".xml");
+            }
             MessageBox.Show(this, xml, "respuesta", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
@@ -311,9 +319,14 @@ namespace RepoboxTimbradoDLL
                 codigoPostal = "85000"
             };
 
-
+            
             // Lo siguiente es generar el archivo CFD (xml sin timbrar)
             string cfd = factura.GenerarCFD();
+            //XmlDocument dccc = new XmlDocument();
+            //dccc.LoadXml(cfd);
+            //factura.Addenda = new Addenda();
+            //factura.Addenda.Any = new XmlElement[1] { factura.CreateAddenda(dccc) };
+            //cfd = factura.GenerarCFD();
 
             // Si la respuesta del método es positiva pasa a timbrarlo
             if (!cfd.StartsWith("RepoBox"))
@@ -1051,11 +1064,11 @@ namespace RepoboxTimbradoDLL
         private void button1_Click(object sender, EventArgs e)
         {
             XmlDocument doc = new XmlDocument();
-            doc.Load(@"C:\Users\Samuel.Arreola\Documents\SEFIN REGENERAR PDF\48CAA876-39B2-4CBF-864B-9AF70091E333.xml");
+            doc.Load(@"C:\Users\Samuel.Arreola\Documents\SEFIN REGENERAR PDF\210C545A-D3AF-4CD6-BD0C-D5199DA986B3.xml");
             if (doc.InnerXml.Trim() != "")
             {
                 RepoBox.CFDIv32 cfdi = new RepoBox.CFDIv32();
-                string rutanueva = cfdi.GenerarPDF33(doc.InnerXml, @"C:\Repobox\Timbrado\RepoBox.jpg", @"C:\Users\Samuel.Arreola\Documents\SEFIN REGENERAR PDF\48CAA876-39B2-4CBF-864B-9AF70091E333");
+                string rutanueva = cfdi.GenerarPDF33(doc.InnerXml, @"C:\Repobox\Timbrado\RepoBox.jpg", @"C:\Users\Samuel.Arreola\Documents\SEFIN REGENERAR PDF\210C545A-D3AF-4CD6-BD0C-D5199DA986B3");
                 MessageBox.Show(rutanueva);
             }
         }
@@ -1069,9 +1082,28 @@ namespace RepoboxTimbradoDLL
 
         private void btnCatUnidad_Click(object sender, EventArgs e)
         {
-            SATCats sat = new SATCats();
-            ClaveUnidad unidad = sat.GetClaveUnidad("E48");
-            MessageBox.Show(this, "Clave: " + unidad.Clave + ". Descripcion: " + unidad.Descripcion, "SAT", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            RepoBoxEmailSender.EmailSender sender1 = new RepoBoxEmailSender.EmailSender("r3c3pc10n");
+            while (sender1.Mensaje != "")
+            {
+                sender1.To = "Samuel.Arreola@RepoBox.com.mx";
+                sender1.Subject = "Prueba de envio de validacion";
+                sender1.Message = "{Mensaje}";
+                //sender.CC = "{Emails separados por coma para agregar N correos}";
+                string msg = ((sender1.Enviar() ? "" : "No ") + "Enviado" + " " + sender1.Mensaje);
+                MessageBox.Show(msg);
+            }
+            //SATCats sat = new SATCats();
+            //ClaveUnidad unidad = sat.GetClaveUnidad("E48");
+            //MessageBox.Show(this, "Clave: " + unidad.Clave + ". Descripcion: " + unidad.Descripcion, "SAT", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void btnFacturarXmlDirecto_Click(object sender, EventArgs e)
+        {
+            //RepoBox33.Comprobante factura = new RepoBox33.Comprobante(@"C:\Repobox\Timbrado\CEA990831FI8\00001000000403161018.cer", @"C:\Repobox\Timbrado\CEA990831FI8\CSD_Cananea_CEA990831FI8_20160719_124927.key", "cananea2016");
+            RepoBox.CFDIv32 cfdi = new RepoBox.CFDIv32();
+            string cfd = "<?xml version=\"1.0\"?><Comprobante xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xsi:schemaLocation=\"http://www.sat.gob.mx/cfd/3 http://www.sat.gob.mx/sitio_internet/cfd/3/cfdv33.xsd\" Version=\"3.3\" Serie=\"PAGO\" Folio=\"12110\" Fecha=\"2018-05-10T01:19:13\" Sello=\"k7J4qnhobJauno4GarSCg211ezao5Ahp8rO/GME1+YSi6kA8SA7nI7WGjV/IsXIPxP/Z5xW1SbaEoIQRn+V4Af0EbeZBe5LHJcZg9BS4KOvdRSqhUNsdALIq5ic40XY+gubIh5B+tK8Leu20pCDmi2QYWuZraJ0S9sQmyANZyZ10CSHl/jSZdrZk7KOY1e9inRbZbnQBLHeZVpTRCKD+SUiMY7MjDKRjZXCK3mE1wJqRzkJWsJ4Wgw+tEVLtIDfTyuPTh6LvruUsBoc+cJ3eww5rL4hIaqF1wpyfmpa9lQ134rjy++WFPoNDoi8DROGYTvcGguvy39Ytk4cZRMG+Pg==\" NoCertificado=\"00001000000408150996\" Certificado=\"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\" SubTotal=\"0\" Moneda=\"XXX\" Total=\"0\" TipoDeComprobante=\"P\" LugarExpedicion=\"85400\" xmlns=\"http://www.sat.gob.mx/cfd/3\"><Emisor Rfc=\"CEA990831FI8\" Nombre=\"COMISION ESTATAL DEL AGUA\" RegimenFiscal=\"603\" /><Receptor Rfc=\"MOTJ890401483\" Nombre=\"MOTJ\" UsoCFDI=\"P01\" /><Conceptos><Concepto ClaveProdServ=\"84111506\" Cantidad=\"1\" ClaveUnidad=\"ACT\" Descripcion=\"Pago\" ValorUnitario=\"0\" Importe=\"0\" /></Conceptos><Complemento><pago10:Pagos xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" Version=\"1.0\" xmlns:pago10=\"http://www.sat.gob.mx/Pagos\"><pago10:Pago FechaPago=\"2018-05-04T18:19:14\" FormaDePagoP=\"28\" MonedaP=\"MXN\" Monto=\"80.00\" NumOperacion=\"01\"><pago10:DoctoRelacionado IdDocumento=\"C45F7FD2-D973-4C6D-84F2-FED6F108B6FC\" MonedaDR=\"MXN\" MetodoDePagoDR=\"PPD\" ImpPagado=\"80.00\" /></pago10:Pago></pago10:Pagos></Complemento></Comprobante>" ;
+            string timbrado = cfdi.Timbrar33(cfd, false, "PADE", "CEA990831FI8"); // "timbrado" es la variable si requieren el xml en texto plano
+            MessageBox.Show(this, timbrado, "RepoBox");
         }
     }
 }

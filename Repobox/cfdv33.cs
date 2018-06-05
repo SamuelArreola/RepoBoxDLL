@@ -110,7 +110,9 @@ namespace RepoBox33
                                 break;
                             }
 
-                doc = this.AddendaAdds(doc);
+                //doc = this.AddendaAdds(doc);
+                doc.LoadXml(doc.InnerXml.Replace("</cfdi:Comprobante>", "<cfdi:Addenda></cfdi:Addenda></cfdi:Comprobante>"));
+                doc.DocumentElement["cfdi:Addenda"].AppendChild(CreateAddenda(doc));
                 try
                 {
                     if (!Directory.Exists(ruta))
@@ -214,7 +216,8 @@ namespace RepoBox33
                 //}
                 //catch (Exception)
                 //{ }
-                doc = this.AddendaAdds(doc);
+                doc.LoadXml(doc.InnerXml.Replace("</cfdi:Comprobante>", "<cfdi:Addenda></cfdi:Addenda></cfdi:Comprobante>"));
+                doc.DocumentElement["cfdi:Addenda"].AppendChild(CreateAddenda(doc));
                 try
                 {
                     if (!Directory.Exists(_Raiz + "\\" + Emisor.Rfc + "\\CFDI"))
@@ -261,7 +264,9 @@ namespace RepoBox33
                 //}
                 //catch (Exception)
                 //{ }
-                doc = this.AddendaAdds(doc);
+                //doc = this.AddendaAdds(doc);
+                doc.LoadXml(doc.InnerXml.Replace("</cfdi:Comprobante>", "<cfdi:Addenda></cfdi:Addenda></cfdi:Comprobante>"));
+                doc.DocumentElement["cfdi:Addenda"].AppendChild(CreateAddenda(doc));
                 try
                 {
                     if (!Directory.Exists(_Raiz + "\\" + Emisor.Rfc + "\\CFDI"))
@@ -276,6 +281,7 @@ namespace RepoBox33
             catch (Exception ex)
             { return ex.Message; }
         }
+        [Obsolete]
         private XmlDocument AddendaAdds(XmlDocument doc)
         {
             try
@@ -354,6 +360,87 @@ namespace RepoBox33
             catch (Exception)
             {
                 return doc;
+            }
+        }
+        private XmlElement CreateAddenda(XmlDocument doc)
+        {
+            XmlElement AddDoc = doc.CreateElement("Documento");
+            try
+            {
+                //XmlElement addenda = doc.CreateElement("cfdi", "Addenda", "Addenda");
+                XmlElement AddRepo = doc.CreateElement("RepoBox");
+                
+                XmlAttribute AddAtt = doc.CreateAttribute("Observaciones");
+                AddAtt.Value = this.Observaciones;
+                AddRepo.Attributes.Append(AddAtt);
+                AddAtt = doc.CreateAttribute("Banco");
+                AddAtt.Value = this.Banco;
+                AddRepo.Attributes.Append(AddAtt);
+                AddAtt = doc.CreateAttribute("Cuenta");
+                AddAtt.Value = (string.IsNullOrEmpty(this.Cuenta) ? "" : this.Cuenta);
+                AddRepo.Attributes.Append(AddAtt);
+                if (this.AddendaCEA != null)
+                {
+                    AddAtt = doc.CreateAttribute("CEA_NoServicio");
+                    AddAtt.Value = (string.IsNullOrEmpty(this.AddendaCEA.NoServicio) ? "" : this.AddendaCEA.NoServicio);
+                    AddRepo.Attributes.Append(AddAtt);
+                }
+                if (this.ReceptorDomicilio == null)
+                {
+                    this.ReceptorDomicilio = new RepoBox.Domicilio()
+                    {
+                        calle = "",
+                        noExterior = "",
+                        noInterior = "",
+                        referencia = "",
+                        colonia = "",
+                        localidad = "",
+                        municipio = "",
+                        estado = "",
+                        pais = "",
+                        codigoPostal = ""
+                    };
+                }
+                XmlElement AddDireccion = doc.CreateElement("ReceptorDomicilio");
+                AddAtt = doc.CreateAttribute("Calle");
+                AddAtt.Value = this.ReceptorDomicilio.calle;
+                AddDireccion.Attributes.Append(AddAtt);
+                AddAtt = doc.CreateAttribute("NoExterior");
+                AddAtt.Value = this.ReceptorDomicilio.noExterior;
+                AddDireccion.Attributes.Append(AddAtt);
+                AddAtt = doc.CreateAttribute("NoInterior");
+                AddAtt.Value = this.ReceptorDomicilio.noInterior;
+                AddDireccion.Attributes.Append(AddAtt);
+                AddAtt = doc.CreateAttribute("Referencia");
+                AddAtt.Value = this.ReceptorDomicilio.referencia;
+                AddDireccion.Attributes.Append(AddAtt);
+                AddAtt = doc.CreateAttribute("Colonia");
+                AddAtt.Value = this.ReceptorDomicilio.colonia;
+                AddDireccion.Attributes.Append(AddAtt);
+                AddAtt = doc.CreateAttribute("Ciudad");
+                AddAtt.Value = this.ReceptorDomicilio.localidad;
+                AddDireccion.Attributes.Append(AddAtt);
+                AddAtt = doc.CreateAttribute("Municipio");
+                AddAtt.Value = this.ReceptorDomicilio.municipio;
+                AddDireccion.Attributes.Append(AddAtt);
+                AddAtt = doc.CreateAttribute("Estado");
+                AddAtt.Value = this.ReceptorDomicilio.estado;
+                AddDireccion.Attributes.Append(AddAtt);
+                AddAtt = doc.CreateAttribute("Pais");
+                AddAtt.Value = this.ReceptorDomicilio.pais;
+                AddDireccion.Attributes.Append(AddAtt);
+                AddAtt = doc.CreateAttribute("CodigoPostal");
+                AddAtt.Value = this.ReceptorDomicilio.codigoPostal;
+                AddDireccion.Attributes.Append(AddAtt);
+                AddRepo.AppendChild(AddDireccion);
+                AddDoc.AppendChild(AddRepo);
+                //addenda.AppendChild(AddDoc);
+                //doc.DocumentElement.AppendChild(addenda);
+                return AddDoc;
+            }
+            catch (Exception)
+            {
+                return AddDoc;
             }
         }
         private string Validar()
@@ -1488,7 +1575,7 @@ namespace RepoBox33
             }
             set
             {
-                this.importeField = Convert.ToDecimal(value.ToString("N2"));
+                this.importeField = (Descripcion.ToUpper() != "PAGO" ? Convert.ToDecimal(value.ToString("N2")) : value);
             }
         }
 
@@ -2330,7 +2417,8 @@ namespace RepoBox33
     [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true, Namespace = "http://www.sat.gob.mx/cfd/3")]
     public partial class Addenda
     {
-
+        [XmlNamespaceDeclarationsAttribute]
+        public XmlSerializerNamespaces myNamespaces = new XmlSerializerNamespaces();
         private System.Xml.XmlElement[] anyField;
 
         /// <comentarios/>
@@ -2345,6 +2433,11 @@ namespace RepoBox33
             {
                 this.anyField = value;
             }
+        }
+
+        public Addenda()
+        {
+            this.myNamespaces.Add("cfdi", "http://www.sat.gob.mx/cfd/3");
         }
     }
     [Serializable]
