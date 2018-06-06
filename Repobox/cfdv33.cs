@@ -96,6 +96,8 @@ namespace RepoBox33
         public AddendaCEA AddendaCEA { get; set; }
         [XmlIgnore]
         public RepoBox.Addendas.PEPSICO.RequestCFD PEPSICO { get; set; }
+        [XmlIgnore]
+        public RepoBox.Addendas.EnvasesUniversales.AddendaEU EnvasesUniversales { get; set; }
         public string SaveXmlERP(string xml, string ruta, string fileName)
         {
             try
@@ -224,7 +226,10 @@ namespace RepoBox33
                 doc.LoadXml(doc.InnerXml.Replace("</cfdi:Comprobante>", "<cfdi:Addenda></cfdi:Addenda></cfdi:Comprobante>"));
                 doc.DocumentElement["cfdi:Addenda"].AppendChild(CreateAddenda(doc));
                 if (PEPSICO != null)
-                    doc.InnerXml = doc.InnerXml.Replace("</cfdi:Addenda></cfdi:Comprobante>", PEPSICO.Create().Replace("<?xml version=\"1.0\"?>", "").Replace("xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"", "").Replace("xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"", "").Replace("xmlns=\"http://www.fact.com.mx/schema/pepsico\"", "") + "</cfdi:Addenda></cfdi:Comprobante>");
+                    //doc.InnerXml = doc.InnerXml.Replace("</cfdi:Addenda></cfdi:Comprobante>", PEPSICO.Create().Replace("<?xml version=\"1.0\"?>", "").Replace("xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"", "").Replace("xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"", "").Replace("xmlns=\"http://www.fact.com.mx/schema/pepsico\"", "") + "</cfdi:Addenda></cfdi:Comprobante>");
+                    doc.InnerXml = doc.InnerXml.Replace("</cfdi:Addenda></cfdi:Comprobante>", PEPSICO.Create().Replace("<?xml version=\"1.0\"?>", "") + "</cfdi:Addenda></cfdi:Comprobante>");
+                if(EnvasesUniversales != null)
+                    doc.InnerXml = doc.InnerXml.Replace("</cfdi:Addenda></cfdi:Comprobante>", EnvasesUniversales.Create().Replace("<?xml version=\"1.0\"?>", "") + "</cfdi:Addenda></cfdi:Comprobante>");
                 try
                 {
                     if (!Directory.Exists(_Raiz + "\\" + Emisor.Rfc + "\\CFDI"))
@@ -706,7 +711,7 @@ namespace RepoBox33
                     reader.Close();
                     document.LoadXml(xml);
                 }
-                return document.InnerXml;
+                return document.InnerXml.Replace("<?xml version=\"1.0\"?>","<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
             }
             catch (Exception ex)
             {

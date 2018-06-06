@@ -59,6 +59,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Addendas\EnvasesUniversales.cs" />
     <Compile Include="Addendas\Pepsico.cs" />
     <Compile Include="CFDIv32.cs" />
     <Compile Include="cfdv32.cs" />

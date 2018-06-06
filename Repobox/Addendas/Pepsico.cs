@@ -4,7 +4,7 @@ using System.IO;
 using System.Collections.Generic;
 namespace RepoBox.Addendas.PEPSICO
 {
-    /// <remarks/>
+    /// <summary></summary>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.33440")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -42,7 +42,7 @@ namespace RepoBox.Addendas.PEPSICO
             this.versionField = "2.0";
         }
 
-        /// <remarks/>
+        /// <summary></summary>
         public RequestCFDDocumento Documento
         {
             get
@@ -55,7 +55,7 @@ namespace RepoBox.Addendas.PEPSICO
             }
         }
 
-        /// <remarks/>
+        /// <summary></summary>
         public RequestCFDProveedor Proveedor
         {
             get
@@ -68,7 +68,7 @@ namespace RepoBox.Addendas.PEPSICO
             }
         }
 
-        /// <remarks/>
+        /// <summary></summary>
         [System.Xml.Serialization.XmlArrayItemAttribute("Recepcion", IsNullable = false)]
         public List<RequestCFDRecepcion> Recepciones
         {
@@ -82,7 +82,7 @@ namespace RepoBox.Addendas.PEPSICO
             }
         }
 
-        /// <remarks/>
+        /// <summary></summary>
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string tipo
         {
@@ -96,7 +96,7 @@ namespace RepoBox.Addendas.PEPSICO
             }
         }
 
-        /// <remarks/>
+        /// <summary></summary>
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string version
         {
@@ -110,7 +110,7 @@ namespace RepoBox.Addendas.PEPSICO
             }
         }
 
-        /// <remarks/>
+        /// <summary></summary>
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string idPedido
         {
@@ -124,7 +124,7 @@ namespace RepoBox.Addendas.PEPSICO
             }
         }
 
-        /// <remarks/>
+        /// <summary></summary>
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string idSolicitudPago
         {
@@ -139,7 +139,7 @@ namespace RepoBox.Addendas.PEPSICO
         }
     }
 
-    /// <remarks/>
+    /// <summary></summary>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.33440")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -153,7 +153,7 @@ namespace RepoBox.Addendas.PEPSICO
         private string folioUUIDField;
         private RequestCFDDocumentoTipoDoc tipoDocField;
 
-        /// <remarks/>
+        /// <summary></summary>
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string referencia
         {
@@ -167,7 +167,7 @@ namespace RepoBox.Addendas.PEPSICO
             }
         }
 
-        /// <remarks/>
+        /// <summary></summary>
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string serie
         {
@@ -181,7 +181,7 @@ namespace RepoBox.Addendas.PEPSICO
             }
         }
 
-        /// <remarks/>
+        /// <summary></summary>
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string folio
         {
@@ -195,7 +195,7 @@ namespace RepoBox.Addendas.PEPSICO
             }
         }
 
-        /// <remarks/>
+        /// <summary></summary>
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string folioUUID
         {
@@ -209,7 +209,7 @@ namespace RepoBox.Addendas.PEPSICO
             }
         }
 
-        /// <remarks/>
+        /// <summary></summary>
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public RequestCFDDocumentoTipoDoc tipoDoc
         {
@@ -224,27 +224,26 @@ namespace RepoBox.Addendas.PEPSICO
         }
     }
 
-    /// <remarks/>
+    /// <summary></summary>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.33440")]
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true, Namespace = "http://www.fact.com.mx/schema/pepsico")]
     public enum RequestCFDDocumentoTipoDoc
     {
-
-        /// <remarks/>
+        /// <summary></summary>
         [System.Xml.Serialization.XmlEnumAttribute("1")]
         Factura,
 
-        /// <remarks/>
+        /// <summary></summary>
         [System.Xml.Serialization.XmlEnumAttribute("2")]
         NotaCredito,
 
-        /// <remarks/>
+        /// <summary></summary>
         [System.Xml.Serialization.XmlEnumAttribute("3")]
         NotaCargoDebito,
     }
 
-    /// <remarks/>
+    /// <summary></summary>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.33440")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -253,7 +252,7 @@ namespace RepoBox.Addendas.PEPSICO
     public partial class RequestCFDProveedor
     {
         private string idProveedorField;
-        /// <remarks/>
+        /// <summary></summary>
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string idProveedor
         {
@@ -268,7 +267,7 @@ namespace RepoBox.Addendas.PEPSICO
         }
     }
 
-    /// <remarks/>
+    /// <summary></summary>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.33440")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -279,7 +278,7 @@ namespace RepoBox.Addendas.PEPSICO
         private List<RequestCFDRecepcionConcepto> conceptoField;
         private string idRecepcionField;
 
-        /// <remarks/>
+        /// <summary></summary>
         [System.Xml.Serialization.XmlElementAttribute("Concepto")]
         public List<RequestCFDRecepcionConcepto> Concepto
         {
@@ -293,7 +292,7 @@ namespace RepoBox.Addendas.PEPSICO
             }
         }
 
-        /// <remarks/>
+        /// <summary></summary>
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string idRecepcion
         {
@@ -308,7 +307,7 @@ namespace RepoBox.Addendas.PEPSICO
         }
     }
 
-    /// <remarks/>
+    /// <summary></summary>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.33440")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -322,7 +321,7 @@ namespace RepoBox.Addendas.PEPSICO
         private decimal valorUnitarioField;
         private decimal importeField;
 
-        /// <remarks/>
+        /// <summary></summary>
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public decimal cantidad
         {
@@ -336,7 +335,7 @@ namespace RepoBox.Addendas.PEPSICO
             }
         }
 
-        /// <remarks/>
+        /// <summary></summary>
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string unidad
         {
@@ -350,7 +349,7 @@ namespace RepoBox.Addendas.PEPSICO
             }
         }
 
-        /// <remarks/>
+        /// <summary></summary>
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string descripcion
         {
@@ -364,7 +363,7 @@ namespace RepoBox.Addendas.PEPSICO
             }
         }
 
-        /// <remarks/>
+        /// <summary></summary>
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public decimal valorUnitario
         {
@@ -378,7 +377,7 @@ namespace RepoBox.Addendas.PEPSICO
             }
         }
 
-        /// <remarks/>
+        /// <summary></summary>
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public decimal importe
         {
