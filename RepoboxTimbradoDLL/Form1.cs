@@ -229,7 +229,7 @@ namespace RepoboxTimbradoDLL
                 NoIdentificacion = "C1",
                 Unidad = "PZA",
                 ValorUnitario = 100000,
-                ClaveProdServ = "93161701",
+                ClaveProdServ = "24101602",
                 ClaveUnidad = "E48",
                 Descuento = 0
             };
@@ -253,7 +253,7 @@ namespace RepoboxTimbradoDLL
                 NoIdentificacion = "C1",
                 Unidad = "PZA",
                 ValorUnitario = 1,
-                ClaveProdServ = "93161701",
+                ClaveProdServ = "24101602",
                 ClaveUnidad = "E48",
                 Descuento = 0
             };
@@ -302,9 +302,9 @@ namespace RepoboxTimbradoDLL
             factura.Observaciones = "Ahora si hay observaciones";
             factura.Cuenta = "1010";
             // Addenda
-            factura.AddendaCEA = new AddendaCEA(); // IMPORTANTE, instanciar la propiedad AddendaCEA.
-            factura.AddendaCEA.NoServicio = "No. 292929292"; // Indicar aqui el no. de servicio
-            // Direccion del cliente (Receptor). // De igual forma imporntante instanciar la propiedad ReceptorDomicilio.
+            //factura.AddendaCEA = new AddendaCEA(); // IMPORTANTE, instanciar la propiedad AddendaCEA.
+            //factura.AddendaCEA.NoServicio = "No. 292929292"; // Indicar aqui el no. de servicio
+            //// Direccion del cliente (Receptor). // De igual forma importante instanciar la propiedad ReceptorDomicilio.
             factura.ReceptorDomicilio = new RepoBox.Domicilio()
             {
                 calle = "Calle 1",
@@ -318,6 +318,33 @@ namespace RepoboxTimbradoDLL
                 pais = "mexico",
                 codigoPostal = "85000"
             };
+
+            // Addenda PEPSICO
+            factura.PEPSICO = new RepoBox.Addendas.PEPSICO.RequestCFD();
+            factura.PEPSICO.idPedido = "01010101";
+            factura.PEPSICO.idSolicitudPago = "111"; // Opcional.
+            factura.PEPSICO.Documento = new RepoBox.Addendas.PEPSICO.RequestCFDDocumento();
+            factura.PEPSICO.Documento.tipoDoc = RepoBox.Addendas.PEPSICO.RequestCFDDocumentoTipoDoc.Factura; // 1 Factura, 2 Nota de Crédito, 3 Nota de Cargo-Debito.
+            factura.PEPSICO.Documento.serie = factura.Serie;
+            factura.PEPSICO.Documento.folio = factura.Folio;
+            factura.PEPSICO.Documento.referencia = ""; // UUID de la factura, solo cuando sea Nota de Crédito o Nota de Cargo-Debito (tipo 2 o 3).
+            //factura.PEPSICO.Documento.folioUUID = ""; // Este va comentado, dado que se registra al momento de generarse la Addenda, que es cuando ya está timbrado el CFDI.
+            factura.PEPSICO.Proveedor = new RepoBox.Addendas.PEPSICO.RequestCFDProveedor();
+            factura.PEPSICO.Proveedor.idProveedor = "000000"; // Id de Proveedor-Acreedor ante PEPSICO (es de la empresa emisora de la factura).
+            factura.PEPSICO.Recepciones = new List<RepoBox.Addendas.PEPSICO.RequestCFDRecepcion>();
+            RepoBox.Addendas.PEPSICO.RequestCFDRecepcion recepcion = new RepoBox.Addendas.PEPSICO.RequestCFDRecepcion();
+            recepcion.idRecepcion = "01010101"; // No. de recepcion Obligatorio.
+            recepcion.Concepto = new List<RepoBox.Addendas.PEPSICO.RequestCFDRecepcionConcepto>();
+            foreach (Concepto conceptoList in factura.Conceptos)
+                recepcion.Concepto.Add(new RepoBox.Addendas.PEPSICO.RequestCFDRecepcionConcepto()
+                {
+                    cantidad = conceptoList.Cantidad,
+                    descripcion = conceptoList.Descripcion,
+                    importe = conceptoList.Importe - conceptoList.Descuento,
+                    unidad = conceptoList.Unidad,
+                    valorUnitario = conceptoList.ValorUnitario
+                });
+            factura.PEPSICO.Recepciones.Add(recepcion);
 
             
             // Lo siguiente es generar el archivo CFD (xml sin timbrar)
@@ -338,6 +365,7 @@ namespace RepoboxTimbradoDLL
                 if (!timbrado.ToUpper().StartsWith("REPOBOX"))
                 {
                     string xmlPath = factura.SaveXml(ref timbrado); // "xmlPath" es la variable que regresa la ruta donde se guardó el XML, pero el metodo es para guardar el xml en archivo.
+                    
                     // Los parametros que acepta GenerarPDF 1. xml en texto plano (ya timbrado), 2. Ruta del logo a mostrar en la factura, 3. Ruta y nombre con el que se guardará el PDF.
                     string pdfPath = cfdi.GenerarPDF33(timbrado, @"C:\Repobox\Timbrado\RepoBox.jpg", xmlPath.Replace(".XML", ""));
                     // En caso de necesitar regenerar el archivo PDF, existe el siguiente método

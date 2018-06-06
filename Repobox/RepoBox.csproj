@@ -59,13 +59,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Addendas\Pepsico.cs" />
     <Compile Include="CFDIv32.cs" />
     <Compile Include="cfdv32.cs" />
     <Compile Include="cfdv33.cs" />
     <Compile Include="ComercioExterior11.cs" />
     <Compile Include="donat11.cs" />
     <Compile Include="Pagos10.cs" />
-    <Compile Include="PilgrimsADDENDA.cs" />
+    <Compile Include="Addendas\Pilgrims.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>

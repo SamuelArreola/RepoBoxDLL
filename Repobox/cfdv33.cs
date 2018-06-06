@@ -94,6 +94,8 @@ namespace RepoBox33
         public string CadenaOriginal { get; set; }
         [XmlIgnore]
         public AddendaCEA AddendaCEA { get; set; }
+        [XmlIgnore]
+        public RepoBox.Addendas.PEPSICO.RequestCFD PEPSICO { get; set; }
         public string SaveXmlERP(string xml, string ruta, string fileName)
         {
             try
@@ -113,6 +115,8 @@ namespace RepoBox33
                 //doc = this.AddendaAdds(doc);
                 doc.LoadXml(doc.InnerXml.Replace("</cfdi:Comprobante>", "<cfdi:Addenda></cfdi:Addenda></cfdi:Comprobante>"));
                 doc.DocumentElement["cfdi:Addenda"].AppendChild(CreateAddenda(doc));
+                //if (PEPSICO != null)
+                //    doc.DocumentElement["cfdi:Addenda"].AppendChild(PEPSICO.Create());
                 try
                 {
                     if (!Directory.Exists(ruta))
@@ -127,6 +131,7 @@ namespace RepoBox33
             catch (Exception ex)
             { return ex.Message; }
         }
+        
         public string SaveXml(ref string xml)
         {
             try
@@ -218,6 +223,8 @@ namespace RepoBox33
                 //{ }
                 doc.LoadXml(doc.InnerXml.Replace("</cfdi:Comprobante>", "<cfdi:Addenda></cfdi:Addenda></cfdi:Comprobante>"));
                 doc.DocumentElement["cfdi:Addenda"].AppendChild(CreateAddenda(doc));
+                if (PEPSICO != null)
+                    doc.InnerXml = doc.InnerXml.Replace("</cfdi:Addenda></cfdi:Comprobante>", PEPSICO.Create().Replace("<?xml version=\"1.0\"?>", "").Replace("xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"", "").Replace("xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"", "").Replace("xmlns=\"http://www.fact.com.mx/schema/pepsico\"", "") + "</cfdi:Addenda></cfdi:Comprobante>");
                 try
                 {
                     if (!Directory.Exists(_Raiz + "\\" + Emisor.Rfc + "\\CFDI"))
@@ -267,6 +274,8 @@ namespace RepoBox33
                 //doc = this.AddendaAdds(doc);
                 doc.LoadXml(doc.InnerXml.Replace("</cfdi:Comprobante>", "<cfdi:Addenda></cfdi:Addenda></cfdi:Comprobante>"));
                 doc.DocumentElement["cfdi:Addenda"].AppendChild(CreateAddenda(doc));
+                //if (PEPSICO != null)
+                //    doc.DocumentElement["cfdi:Addenda"].AppendChild(PEPSICO.Create());
                 try
                 {
                     if (!Directory.Exists(_Raiz + "\\" + Emisor.Rfc + "\\CFDI"))

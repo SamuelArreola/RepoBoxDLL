@@ -864,6 +864,8 @@ namespace RepoBox
                 DataSet set = new DataSet();
                 XmlDocument document = new XmlDocument();
                 document.LoadXml(xml);
+                if (xml.Contains("<RequestCFD"))
+                    document.DocumentElement["cfdi:Addenda"]["RequestCFD"].RemoveAll();
                 using (MemoryStream stream = new MemoryStream())
                 {
                     document.Save(stream);
