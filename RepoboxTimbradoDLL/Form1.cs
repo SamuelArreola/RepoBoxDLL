@@ -320,33 +320,61 @@ namespace RepoboxTimbradoDLL
             };
 
             // Addenda PEPSICO
-            factura.PEPSICO = new RepoBox.Addendas.PEPSICO.RequestCFD();
-            factura.PEPSICO.idPedido = "01010101";
-            factura.PEPSICO.idSolicitudPago = "111"; // Opcional.
-            factura.PEPSICO.Documento = new RepoBox.Addendas.PEPSICO.RequestCFDDocumento();
-            factura.PEPSICO.Documento.tipoDoc = RepoBox.Addendas.PEPSICO.RequestCFDDocumentoTipoDoc.Factura; // 1 Factura, 2 Nota de Crédito, 3 Nota de Cargo-Debito.
-            factura.PEPSICO.Documento.serie = factura.Serie;
-            factura.PEPSICO.Documento.folio = factura.Folio;
-            factura.PEPSICO.Documento.referencia = ""; // UUID de la factura, solo cuando sea Nota de Crédito o Nota de Cargo-Debito (tipo 2 o 3).
-            //factura.PEPSICO.Documento.folioUUID = ""; // Este va comentado, dado que se registra al momento de generarse la Addenda, que es cuando ya está timbrado el CFDI.
-            factura.PEPSICO.Proveedor = new RepoBox.Addendas.PEPSICO.RequestCFDProveedor();
-            factura.PEPSICO.Proveedor.idProveedor = "000000"; // Id de Proveedor-Acreedor ante PEPSICO (es de la empresa emisora de la factura).
-            factura.PEPSICO.Recepciones = new List<RepoBox.Addendas.PEPSICO.RequestCFDRecepcion>();
-            RepoBox.Addendas.PEPSICO.RequestCFDRecepcion recepcion = new RepoBox.Addendas.PEPSICO.RequestCFDRecepcion();
-            recepcion.idRecepcion = "01010101"; // No. de recepcion Obligatorio.
-            recepcion.Concepto = new List<RepoBox.Addendas.PEPSICO.RequestCFDRecepcionConcepto>();
-            foreach (Concepto conceptoList in factura.Conceptos)
-                recepcion.Concepto.Add(new RepoBox.Addendas.PEPSICO.RequestCFDRecepcionConcepto()
-                {
-                    cantidad = conceptoList.Cantidad,
-                    descripcion = conceptoList.Descripcion,
-                    importe = conceptoList.Importe - conceptoList.Descuento,
-                    unidad = conceptoList.Unidad,
-                    valorUnitario = conceptoList.ValorUnitario
-                });
-            factura.PEPSICO.Recepciones.Add(recepcion);
+            //factura.PEPSICO = new RepoBox.Addendas.PEPSICO.RequestCFD();
+            //factura.PEPSICO.idPedido = "01010101";
+            //factura.PEPSICO.idSolicitudPago = "111"; // Opcional.
+            //factura.PEPSICO.Documento = new RepoBox.Addendas.PEPSICO.RequestCFDDocumento();
+            //factura.PEPSICO.Documento.tipoDoc = RepoBox.Addendas.PEPSICO.RequestCFDDocumentoTipoDoc.Factura; // 1 Factura, 2 Nota de Crédito, 3 Nota de Cargo-Debito.
+            //factura.PEPSICO.Documento.serie = factura.Serie;
+            //factura.PEPSICO.Documento.folio = factura.Folio;
+            //factura.PEPSICO.Documento.referencia = ""; // UUID de la factura, solo cuando sea Nota de Crédito o Nota de Cargo-Debito (tipo 2 o 3).
+            ////factura.PEPSICO.Documento.folioUUID = ""; // Este va comentado, dado que se registra al momento de generarse la Addenda, que es cuando ya está timbrado el CFDI.
+            //factura.PEPSICO.Proveedor = new RepoBox.Addendas.PEPSICO.RequestCFDProveedor();
+            //factura.PEPSICO.Proveedor.idProveedor = "000000"; // Id de Proveedor-Acreedor ante PEPSICO (es de la empresa emisora de la factura).
+            //factura.PEPSICO.Recepciones = new List<RepoBox.Addendas.PEPSICO.RequestCFDRecepcion>();
+            //RepoBox.Addendas.PEPSICO.RequestCFDRecepcion recepcion = new RepoBox.Addendas.PEPSICO.RequestCFDRecepcion();
+            //recepcion.idRecepcion = "01010101"; // No. de recepcion Obligatorio.
+            //recepcion.Concepto = new List<RepoBox.Addendas.PEPSICO.RequestCFDRecepcionConcepto>();
+            //foreach (Concepto conceptoList in factura.Conceptos)
+            //    recepcion.Concepto.Add(new RepoBox.Addendas.PEPSICO.RequestCFDRecepcionConcepto()
+            //    {
+            //        cantidad = conceptoList.Cantidad,
+            //        descripcion = conceptoList.Descripcion,
+            //        importe = conceptoList.Importe - conceptoList.Descuento,
+            //        unidad = conceptoList.Unidad,
+            //        valorUnitario = conceptoList.ValorUnitario
+            //    });
+            //factura.PEPSICO.Recepciones.Add(recepcion);
 
-            
+            // Addenda Envases Universales.
+            factura.EnvasesUniversales = new RepoBox.Addendas.EnvasesUniversales.AddendaEU();
+            factura.EnvasesUniversales.TipoFactura = new RepoBox.Addendas.EnvasesUniversales.TipoFactura();
+            factura.EnvasesUniversales.TipoFactura.Version = "1.0";
+            factura.EnvasesUniversales.TipoFactura.IdFactura = RepoBox.Addendas.EnvasesUniversales.IdFactura.Factura;
+            factura.EnvasesUniversales.TipoFactura.FechaMensaje = DateTime.Now;
+
+            factura.EnvasesUniversales.TipoTransaccion = new RepoBox.Addendas.EnvasesUniversales.TipoTransaccion();
+            factura.EnvasesUniversales.TipoTransaccion.IdTransaccion = RepoBox.Addendas.EnvasesUniversales.IdTransaccion.Con_Pedido;
+            factura.EnvasesUniversales.TipoTransaccion.Transaccion = "44566";
+
+            factura.EnvasesUniversales.OrdenesCompra = new List<RepoBox.Addendas.EnvasesUniversales.Secuencia>();
+            RepoBox.Addendas.EnvasesUniversales.Secuencia secuencia = new RepoBox.Addendas.EnvasesUniversales.Secuencia();
+            secuencia.consec = 1;
+            secuencia.IdPedido = "1234567890";
+            secuencia.EntradaAlmacen = new List<string>();
+            secuencia.EntradaAlmacen.Add("0123456789");
+            secuencia.EntradaAlmacen.Add("-10123456789");
+            factura.EnvasesUniversales.OrdenesCompra.Add(secuencia);
+
+            factura.EnvasesUniversales.Moneda = new RepoBox.Addendas.EnvasesUniversales.Moneda();
+            factura.EnvasesUniversales.Moneda.MonedaCve = RepoBox.Addendas.EnvasesUniversales.MonedaCve.MXN;
+            factura.EnvasesUniversales.Moneda.TipoCambio = 1;
+            factura.EnvasesUniversales.Moneda.SubtotalM = 10000;
+            factura.EnvasesUniversales.Moneda.TotalM = 11600;
+            factura.EnvasesUniversales.Moneda.ImpuestoM = 1600;
+
+            factura.EnvasesUniversales.ImpuestosR = null;
+
             // Lo siguiente es generar el archivo CFD (xml sin timbrar)
             string cfd = factura.GenerarCFD();
             //XmlDocument dccc = new XmlDocument();
