@@ -35,6 +35,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="RepoBoxEmailSender">
+      <HintPath>..\..\..\..\OwnApps\RepoBoxEmailSender\RepoBoxEmailSender\bin\Release\RepoBoxEmailSender.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.EnterpriseServices" />
@@ -102,12 +105,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Repobox\RepoBox.csproj">
-      <Project>{E835CB9E-8D26-4085-8114-DF916239BC49}</Project>
-      <Name>RepoBox</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
@@ -125,6 +122,12 @@
       <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
       <CachedSettingsPropName>RepoboxTimbradoDLL_SEFINZacatecas_facturacion</CachedSettingsPropName>
     </WebReferenceUrl>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Repobox\RepoBox.csproj">
+      <Project>{E835CB9E-8D26-4085-8114-DF916239BC49}</Project>
+      <Name>RepoBox</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
